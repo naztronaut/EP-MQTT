@@ -1,0 +1,11 @@
+[Unit]
+Description=MQTT Subscriber
+After=network.target
+
+[Service]
+Restart=always
+RestartSec=10
+ExecStart=/usr/bin/python3 /home/pi/mqtt_subscriber.py
+
+[Install]
+WantedBy=multi-user.target
