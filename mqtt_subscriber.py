@@ -7,13 +7,14 @@ def on_connect(client, userdata, flags, rc):
 
     # Subscribing in on_connect() means that if we lose the connection and
     # reconnect then subscriptions will be renewed.
-    client.subscribe([("python/test", 1), ("python/topic2", 1), ("python/topic3", 1)])
+    client.subscribe([("ep_mqtt/test", 1), ("ep_mqtt/topic2", 1), ("ep_mqtt/topic3", 1)])
 
 
 def on_message(client, userdata, message):
     print("Message received: " + message.topic + " : " + str(message.payload))
     if message.topic == 'python/topic2':
-        print("TOPIC 2 RECEIVED")
+        with open('/home/pi/mqtt_update.txt', 'a+') as f:
+            f.write("received topic2")
 
 
 broker_address = "localhost"  # Broker address
