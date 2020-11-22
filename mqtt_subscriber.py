@@ -12,7 +12,7 @@ def on_connect(client, userdata, flags, rc):
 
 def on_message(client, userdata, message):
     print("Message received: " + message.topic + " : " + str(message.payload))
-    if message.topic == 'python/topic2':
+    if message.topic == 'ep_mqtt/topic2':
         with open('/home/pi/mqtt_update.txt', 'a+') as f:
             f.write("received topic2")
 
