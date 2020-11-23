@@ -1,5 +1,9 @@
 # EP MQTT Setup 
 
+<img src="img/PythonMQTT.jpg" alt="Python MQTT Thumbnail" width="700px">
+
+
+## Install Mosquitto
 Run the following commands to install install mosquitto:
 
 ```shell
@@ -24,11 +28,14 @@ Run mosquitto as a daemon:
 mosquitto -d
 ```
 
+## Install Paho-Mqtt Python Library 
 Install paho-mqtt:
 
 ```shell
 sudo pip3 install paho-mqtt
 ```
+
+## Set up `mqtt_subscriber.py` as a service
 
 Get the `mqtt_subscriber.py` script from this repo and place it anywhere on your server. 
 
