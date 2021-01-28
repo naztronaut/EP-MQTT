@@ -59,3 +59,64 @@ To see if it's running:
 service mqtt_subscriber/status
 ```
 
+## Set up authentication for your Mosquitto broker
+
+#### Method 1: Create a password file manually:
+
+```shell
+nano password_file
+```
+
+Add your credentials:
+
+```shell
+username:password
+```
+
+Substitute `username` for your username and `password` for your password.
+
+Encrypt the file:
+
+```shell
+sudo mosquitto_passwd -U password_file
+```
+
+#### Method 2: Create password file via CLI
+
+Run command:
+
+```shell
+sudo mosquitto_passwd -c password_file username
+```
+
+Substitute `username` for your username and `password` for your password.
+
+
+#### Mosquitto Configuration
+
+Move the newly created `password_file` to its proper location:
+
+```shell
+sudo mv password_file /etc/mosquitto
+```
+
+Edit the configuration file:
+
+```shell
+cd /etc/mosquitto 
+sudo nano mosquitto.conf
+```
+
+Add the two following lines at the end:
+
+```
+allow_anonymous false
+password_file /etc/mosquitto/password_file
+```
+Also be sure to look at the [mosquitto.conf](mosquitto.conf) file in this repo for a full example. 
+
+Restart mosquitto service:
+
+```shell
+sudo service mosquitto restart
+```
